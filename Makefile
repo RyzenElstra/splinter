@@ -1,23 +1,17 @@
-CC = gcc
-CFLAGS	= -O2 -std=c99 -Wall -W -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -g
-INCLUDES = -I./mbedtls/include -I./ -I./readline #-I./zlib/include -I./readline -I./
+CC = clang
+CFLAGS	= -O2 -Wall -DDEBUG -g
+INCLUDES = -I./mbedtls/include -I./ -I./readline -I./include
 LFLAGS = -L./mbedtls/library	\
-	 -L./readline/shlib	\
-	 #-L./zlib 
+	 -L./readline/shlib
 LIBS =	-lmbedtls 			\
 	-lmbedx509			\
 	-lmbedcrypto			\
 	-lncurses			\
-	-lreadline			\
-	#-lz
+	-lreadline
 
 all:
-	#cd readline; make; cd shlib; mv libreadline.so.6* libreadline.so; cd ../..
-	#cd zlib; make; cd ..
-	#cd mbedtls; make; cd ..
-
-	$(CC) $(CFLAGS) $(INCLUDES) -o rat rat.c $(LFLAGS) $(LIBS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o rat-client rat-client.c $(LFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o rat src/rat.c $(LFLAGS) $(LIBS) src/file_operations.c src/compression.c
+	$(CC) $(CFLAGS) $(INCLUDES) -o rat-client src/rat-client.c $(LFLAGS) $(LIBS) src/file_operations-client.c src/compression.c
 
 clean:
 	rm -f rat rat-client
