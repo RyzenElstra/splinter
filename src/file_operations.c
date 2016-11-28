@@ -6,9 +6,9 @@
 #include <strings.h>
 #include <sys/stat.h>
 
-#include "mbedtls/ssl.h"
-#include "mbedtls/net.h"
-#include "mbedtls/sha256.h"
+#include "wolfssl/options.h"
+#include "wolfssl/ssl.h"
+#include "wolfssl/test.h"
 
 #include "splinter.h"
 

@@ -1,6 +1,8 @@
 #include <poll.h>
 
-#include "mbedtls/net.h"
+#include "wolfssl/options.h"
+#include "wolfssl/ssl.h"
+#include "wolfssl/test.h"
 
 #define PORT "5000"
 #define BACKLOG 10
@@ -14,8 +16,8 @@ struct compression {
 };
 
 struct ssl_conn {
-    mbedtls_net_context conn_fd;
-    mbedtls_ssl_context ssl_fd;
+    int conn_fd;
+    WOLFSSL* ssl_fd;
     struct ssl_conn *next;
 };
 

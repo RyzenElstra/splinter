@@ -14,14 +14,9 @@
 #include <fcntl.h>
 #include <poll.h>
 
-#include "mbedtls/net.h"
-#include "mbedtls/debug.h"
-#include "mbedtls/ssl.h"
-#include "mbedtls/entropy.h"
-#include "mbedtls/ctr_drbg.h"
-#include "mbedtls/error.h"
-#include "mbedtls/certs.h"
-#include "mbedtls/sha256.h"
+#include "wolfssl/options.h"
+#include "wolfssl/ssl.h"
+#include "wolfssl/test.h"
 
 #include "readline/readline.h"
 #include "readline/history.h"
